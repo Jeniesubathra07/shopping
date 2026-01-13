@@ -1,0 +1,135 @@
+.filter-panel {
+    background: var(--white);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 100px;
+}
+
+.filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--gray-200);
+
+    h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+}
+
+.btn-reset {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 0.875rem;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.filter-group {
+    margin-bottom: 2rem;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    h4 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+    }
+}
+
+.group-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 1rem;
+
+    h4 {
+        margin-bottom: 0;
+    }
+
+    .material-icons {
+        color: var(--gray-500);
+    }
+}
+
+.group-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.radio-item,
+.toggle-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: var(--gray-500);
+
+    input[type="radio"],
+    input[type="checkbox"] {
+        accent-color: var(--primary-color);
+        width: 1.125rem;
+        height: 1.125rem;
+    }
+
+    &:hover {
+        color: var(--primary-color);
+    }
+}
+
+.sort-select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--gray-200);
+    border-radius: 0.375rem;
+    background-color: var(--white);
+    font-size: 0.95rem;
+    color: var(--text-color);
+
+    &:focus {
+        outline: none;
+        border-color: var(--primary-color);
+    }
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+input[type="range"] {
+    width: 100%;
+    accent-color: var(--primary-color);
+}
+
+.range-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    color: var(--gray-500);
+    margin-top: 0.5rem;
+}
+
+.rating-label {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+
+    .star {
+        font-size: 1rem;
+        color: #fbbf24;
+    }
+}

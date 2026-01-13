@@ -1,0 +1,83 @@
+<div class="filter-panel">
+    <div class="filter-header">
+        <h3>Filters</h3>
+        <button class="btn-reset" (click)="resetFilters()">Reset</button>
+    </div>
+
+    <div class="filter-group">
+        <div class="group-header" (click)="categoriesExpanded = !categoriesExpanded">
+            <h4>Categories</h4>
+            <span class="material-icons">{{ categoriesExpanded ? 'expand_less' : 'expand_more' }}</span>
+        </div>
+        @if (categoriesExpanded) {
+        <div class="group-content">
+            <label class="radio-item">
+                <input type="radio" name="category" [value]="''" [(ngModel)]="selectedCategory"
+                    (change)="applyFilters()">
+                <span>All Categories</span>
+            </label>
+            @for (cat of categories; track cat) {
+            <label class="radio-item">
+                <input type="radio" name="category" [value]="cat" [(ngModel)]="selectedCategory"
+                    (change)="applyFilters()">
+                <span class="capitalize">{{ cat }}</span>
+            </label>
+            }
+        </div>
+        }
+    </div>
+
+    <div class="filter-group">
+        <div class="group-header" (click)="priceExpanded = !priceExpanded">
+            <h4>Max Price: ${{ priceRange() }}</h4>
+            <span class="material-icons">{{ priceExpanded ? 'expand_less' : 'expand_more' }}</span>
+        </div>
+        @if (priceExpanded) {
+        <div class="group-content">
+            <input type="range" min="0" max="1000" step="10" [(ngModel)]="priceRange" (change)="applyFilters()">
+            <div class="range-labels">
+                <span>$0</span>
+                <span>$1000</span>
+            </div>
+        </div>
+        }
+    </div>
+
+    <div class="filter-group">
+        <div class="group-header" (click)="ratingExpanded = !ratingExpanded">
+            <h4>Rating</h4>
+            <span class="material-icons">{{ ratingExpanded ? 'expand_less' : 'expand_more' }}</span>
+        </div>
+        @if (ratingExpanded) {
+        <div class="group-content">
+            @for (rating of [4, 3, 2]; track rating) {
+            <label class="radio-item">
+                <input type="radio" name="rating" [value]="rating" [(ngModel)]="selectedRating"
+                    (change)="applyFilters()">
+                <span class="rating-label">
+                    {{ rating }}+ <span class="material-icons star">star</span>
+                </span>
+            </label>
+            }
+        </div>
+        }
+    </div>
+
+    <div class="filter-group">
+        <label class="toggle-item">
+            <input type="checkbox" [(ngModel)]="inStockOnly" (change)="applyFilters()">
+            <span>In Stock Only</span>
+        </label>
+    </div>
+
+    <div class="filter-group">
+        <h4>Sort By</h4>
+        <select [(ngModel)]="sortBy" (change)="applyFilters()" class="sort-select">
+            <option value="featured">Featured</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="name-asc">Name: A to Z</option>
+            <option value="name-desc">Name: Z to A</option>
+        </select>
+    </div>
+</div>

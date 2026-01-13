@@ -1,0 +1,34 @@
+<div class="product-page container">
+    <aside class="sidebar">
+        <app-filter-panel [categories]="categories()" (filterChange)="onFilterChange($event)">
+        </app-filter-panel>
+    </aside>
+
+    <main class="main-content">
+        <div class="page-header">
+            <div class="search-container">
+                <span class="material-icons search-icon">search</span>
+                <input type="text" placeholder="Search products..." [ngModel]="searchQuery()"
+                    (ngModelChange)="searchQuery.set($event)">
+            </div>
+            <div class="results-count">
+                Showing {{ filteredProducts().length }} results
+            </div>
+        </div>
+
+        @if (filteredProducts().length > 0) {
+        <div class="product-grid">
+            @for (product of filteredProducts(); track product.id) {
+            <app-product-card [product]="product" (addToCart)="addToCart($event)">
+            </app-product-card>
+            }
+        </div>
+        } @else {
+        <div class="empty-state">
+            <span class="material-icons">search_off</span>
+            <h3>No products found</h3>
+            <p>Try adjusting your search or filters to find what you're looking for.</p>
+        </div>
+        }
+    </main>
+</div>

@@ -1,0 +1,69 @@
+<header class="header">
+  <div class="header-content">
+    <button class="mobile-toggle" (click)="toggleMenu()">
+      <span class="material-icons">{{ menuOpen ? 'close' : 'menu' }}</span>
+    </button>
+
+    <a routerLink="/" class="logo">LuxeLane</a>
+
+    <nav class="nav-links" [class.open]="menuOpen">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+        (click)="menuOpen = false">Home</a>
+      <a routerLink="/products" routerLinkActive="active" (click)="menuOpen = false">Shop</a>
+    </nav>
+
+    <div class="actions">
+      <div class="search-bar">
+        <input type="text" placeholder="Search products...">
+      </div>
+
+      <a routerLink="/cart" class="cart-btn">
+        <span class="material-icons">shopping_cart</span>
+        @if (cartService.cartCount() > 0) {
+        <span class="badge">{{ cartService.cartCount() }}</span>
+        }
+      </a>
+
+      <div class="auth-menu">
+        @if (authService.isAuthenticated()) {
+        <div class="user-dropdown-container">
+          <button class="user-btn" (click)="toggleMenu()">
+            @if (authService.currentUser()?.avatar) {
+            <img [src]="authService.currentUser()?.avatar" alt="User">
+            } @else {
+            <div class="user-initials">
+              {{ authService.currentUser()?.name?.charAt(0)?.toUpperCase() || 'U' }}
+            </div>
+            }
+          </button>
+
+          @if (menuOpen) {
+          <div class="dropdown-menu">
+            <div class="user-info">
+              <span class="name">{{ authService.currentUser()?.name }}</span>
+              <span class="email">{{ authService.currentUser()?.email }}</span>
+            </div>
+            <div class="divider"></div>
+            <a routerLink="/profile" class="item" (click)="menuOpen = false">
+              <span class="material-icons">person</span> Profile
+            </a>
+            <a routerLink="/settings" class="item" (click)="menuOpen = false">
+              <span class="material-icons">settings</span> Settings
+            </a>
+            <div class="divider"></div>
+            <button class="item logout" (click)="logout()">
+              <span class="material-icons">logout</span> Logout
+            </button>
+          </div>
+          }
+        </div>
+        } @else {
+        <div class="guest-nav">
+          <a routerLink="/login" class="nav-link">Login</a>
+          <a routerLink="/signup" class="btn btn-primary btn-sm">Sign Up</a>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</header>

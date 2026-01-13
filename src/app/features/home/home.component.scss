@@ -1,0 +1,123 @@
+.hero {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.8), rgba(16, 185, 129, 0.8)), url('/assets/images/hero-bg.png') no-repeat center center/cover;
+    background-blend-mode: overlay;
+    color: white;
+    padding: 8rem 0;
+    text-align: center;
+    margin-bottom: 4rem;
+    border-radius: 0 0 2rem 2rem;
+
+    h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+
+        @media (max-width: 768px) {
+            font-size: 2.5rem;
+        }
+    }
+
+    p {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        opacity: 0.9;
+    }
+}
+
+.btn-lg {
+    padding: 1rem 2.5rem;
+    font-size: 1.125rem;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    position: relative;
+
+    &::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 4px;
+        background: var(--primary-color);
+        margin: 10px auto 0;
+        border-radius: 2px;
+    }
+}
+
+.carousel-container {
+    position: relative;
+    padding: 1rem 0;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 280px);
+    /* Show 4 items */
+    gap: 2rem;
+    margin-bottom: 4rem;
+
+    &.carousel {
+        overflow-x: auto;
+        padding-bottom: 1rem;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        /* Firefox */
+        -ms-overflow-style: none;
+        /* IE 10+ */
+
+        &::-webkit-scrollbar {
+            display: none;
+            /* WebKit */
+        }
+
+        app-product-card {
+            scroll-snap-align: start;
+            min-width: 280px;
+        }
+    }
+
+    @media (max-width: 1200px) {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}
+
+.features {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 4rem;
+    gap: 2rem;
+    flex-wrap: wrap;
+
+    .feature-item {
+        text-align: center;
+        padding: 2rem;
+
+        .material-icons {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            color: var(--gray-500);
+        }
+    }
+}
+
+.loading {
+    text-align: center;
+    padding: 4rem;
+    color: var(--gray-500);
+}

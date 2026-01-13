@@ -1,0 +1,55 @@
+<div class="profile-page container">
+    <div class="profile-header">
+        <div class="user-avatar">
+            @if (authService.currentUser()?.avatar) {
+            <img [src]="authService.currentUser()?.avatar" alt="Profile">
+            } @else {
+            <div class="initials">
+                {{ authService.currentUser()?.name?.charAt(0)?.toUpperCase() }}
+            </div>
+            }
+        </div>
+        <div class="user-details">
+            <h1>{{ authService.currentUser()?.name }}</h1>
+            <p>{{ authService.currentUser()?.email }}</p>
+            <span class="badge">Member since 2023</span>
+        </div>
+    </div>
+
+    <div class="content-grid">
+        <div class="card recent-orders">
+            <h2>Recent Orders</h2>
+            <div class="order-list">
+                @for (order of orderHistory(); track order.id) {
+                <div class="order-item">
+                    <div class="order-info">
+                        <span class="order-id">{{ order.id }}</span>
+                        <span class="order-date">{{ order.date }}</span>
+                    </div>
+                    <div class="order-meta">
+                        <span class="order-total">${{ order.total }}</span>
+                        <span class="status" [class]="order.status.toLowerCase()">{{ order.status }}</span>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+
+        <div class="card account-info">
+            <h2>Account Information</h2>
+            <div class="info-row">
+                <label>Full Name</label>
+                <p>{{ authService.currentUser()?.name }}</p>
+            </div>
+            <div class="info-row">
+                <label>Email</label>
+                <p>{{ authService.currentUser()?.email }}</p>
+            </div>
+            <div class="info-row">
+                <label>Phone</label>
+                <p>+1 (555) 123-4567</p>
+            </div>
+            <button class="btn btn-secondary btn-sm">Edit Information</button>
+        </div>
+    </div>
+</div>

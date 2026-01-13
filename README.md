@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Angular E-commerce SPA - Deployment Guide
 
 ## Prerequisites
@@ -59,3 +60,6 @@ The build artifacts will be stored in the `dist/ecommerce-app` directory.
 ng build --base-href "https://<username>.github.io/<repo-name>/"
 npx angular-cli-ghpages --dir=dist/ecommerce-app/browser
 ```
+=======
+# shopping
+>>>>>>> 8ba2155637813057887016154f680aa0c59d5aa4

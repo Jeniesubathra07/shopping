@@ -1,0 +1,32 @@
+<div class="cart-item">
+    <div class="product-col">
+        <img [src]="item.product.image" [alt]="item.product.title" class="product-img">
+        <div class="product-details">
+            <h3 [routerLink]="['/product', item.product.id]">{{ item.product.title }}</h3>
+            <span class="category">{{ item.product.category }}</span>
+            <span class="price-mobile">${{ item.product.price }}</span>
+        </div>
+    </div>
+
+    <div class="price-col">
+        ${{ item.product.price }}
+    </div>
+
+    <div class="quantity-col">
+        <div class="qty-control">
+            <button (click)="onQuantityChange(-1)">-</button>
+            <span>{{ item.quantity }}</span>
+            <button (click)="onQuantityChange(1)">+</button>
+        </div>
+    </div>
+
+    <div class="total-col">
+        ${{ (item.product.price * item.quantity).toFixed(2) }}
+    </div>
+
+    <div class="actions-col">
+        <button class="btn-remove" (click)="remove.emit()">
+            <span class="material-icons">delete</span>
+        </button>
+    </div>
+</div>

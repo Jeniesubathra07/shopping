@@ -1,0 +1,147 @@
+.cart-item {
+    display: grid;
+    grid-template-columns: 3fr 1fr 1.5fr 1fr 0.5fr;
+    align-items: center;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--gray-200);
+    gap: 1rem;
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr auto;
+        grid-template-areas:
+            "product product"
+            "qty total"
+            "actions actions";
+        gap: 1rem;
+
+        .product-col {
+            grid-area: product;
+        }
+
+        .quantity-col {
+            grid-area: qty;
+        }
+
+        .total-col {
+            grid-area: total;
+        }
+
+        .actions-col {
+            grid-area: actions;
+        }
+    }
+}
+
+.product-col {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+
+    .product-img {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+        border: 1px solid var(--gray-200);
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+    }
+
+    h3 {
+        font-size: 1rem;
+        margin-bottom: 0.25rem;
+        cursor: pointer;
+
+        &:hover {
+            color: var(--primary-color);
+        }
+    }
+
+    .category {
+        font-size: 0.875rem;
+        color: var(--gray-500);
+        display: block;
+    }
+
+    .price-mobile {
+        display: none;
+
+        @media (max-width: 768px) {
+            display: block;
+            font-weight: 600;
+            margin-top: 0.25rem;
+        }
+    }
+}
+
+.price-col {
+    font-weight: 500;
+
+    @media (max-width: 768px) {
+        display: none;
+    }
+}
+
+.quantity-col {}
+
+.qty-control {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--gray-200);
+    border-radius: 4px;
+    width: fit-content;
+
+    button {
+        width: 30px;
+        height: 30px;
+        background: none;
+        border: none;
+        cursor: pointer;
+
+        &:hover {
+            background: var(--gray-200);
+        }
+    }
+
+    span {
+        width: 30px;
+        text-align: center;
+        font-size: 0.875rem;
+    }
+}
+
+.total-col {
+    font-weight: 700;
+    color: var(--text-color);
+
+    @media (max-width: 768px) {
+        text-align: right;
+    }
+}
+
+.actions-col {
+    text-align: right;
+
+    @media (max-width: 768px) {
+        display: none;
+        /* Maybe show delete button somewhere else on mobile? 
+       For now, let's keep it simple or implement swipe? 
+       Let's just show it in the row. */
+        display: block;
+        text-align: left;
+    }
+}
+
+.btn-remove {
+    background: none;
+    border: none;
+    color: var(--gray-500);
+    cursor: pointer;
+
+    &:hover {
+        color: var(--danger);
+    }
+}

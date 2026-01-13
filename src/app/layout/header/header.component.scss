@@ -1,0 +1,297 @@
+.header {
+    background: var(--white);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    height: 70px;
+    display: flex;
+    align-items: center;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    width: 100%;
+    padding: 0 2rem;
+    /* Add padding to sides */
+    max-width: 100%;
+    /* Ensure full width */
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+.mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 0.5rem;
+
+    @media (max-width: 768px) {
+        display: block;
+    }
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+
+    @media (max-width: 768px) {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: var(--white);
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1.5rem;
+        z-index: 100;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+
+        &.open {
+            transform: translateX(0);
+        }
+    }
+
+    a {
+        color: var(--gray-500);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s;
+
+        &:hover,
+        &.active {
+            color: var(--primary-color);
+        }
+    }
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-left: auto;
+    /* Push actions to the far right */
+}
+
+.search-bar {
+    display: none;
+
+    @media (min-width: 900px) {
+        display: block;
+        position: relative;
+
+        input {
+            background: var(--bg-color);
+            /* Light gray background, dark in dark mode */
+            border: 1px solid transparent;
+            padding: 0.6rem 1.2rem;
+            border-radius: 99px;
+            /* Pill shape */
+            width: 250px;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+
+            &:focus {
+                outline: none;
+                background: var(--white);
+                border-color: var(--primary-color);
+                box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+                /* Subtle ring */
+                width: 300px;
+            }
+
+            &::placeholder {
+                color: var(--gray-500);
+            }
+        }
+    }
+}
+
+.cart-btn {
+    position: relative;
+    color: var(--text-color);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+
+    .badge {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background: var(--danger);
+        color: white;
+        font-size: 0.7rem;
+        font-weight: 700;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    &:hover {
+        color: var(--primary-color);
+    }
+}
+
+/* Auth Styles */
+.auth-menu {
+    position: relative;
+}
+
+.user-dropdown-container {
+    position: relative;
+}
+
+.user-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+
+    .user-initials {
+        width: 36px;
+        height: 36px;
+        background: var(--secondary-color);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 1rem;
+    }
+
+    img {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 0.5rem;
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    min-width: 200px;
+    overflow: hidden;
+    animation: fadeIn 0.1s ease-out;
+
+    .user-info {
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+
+        .name {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .email {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+        }
+    }
+
+    .divider {
+        height: 1px;
+        background: var(--gray-200);
+    }
+
+    .item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1rem;
+        color: var(--text-color);
+        text-decoration: none;
+        font-size: 0.9rem;
+        width: 100%;
+        background: none;
+        border: none;
+        cursor: pointer;
+        text-align: left;
+
+        .material-icons {
+            font-size: 1.1rem;
+            color: var(--gray-500);
+        }
+
+        &:hover {
+            background: var(--gray-50);
+            color: var(--primary-color);
+
+            .material-icons {
+                color: var(--primary-color);
+            }
+        }
+
+        &.logout {
+            color: var(--danger);
+
+            .material-icons {
+                color: var(--danger);
+            }
+
+            &:hover {
+                background: #fee2e2;
+            }
+        }
+    }
+}
+
+.guest-nav {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+
+    .nav-link {
+        color: var(--text-color);
+        text-decoration: none;
+        font-weight: 500;
+
+        &:hover {
+            color: var(--primary-color);
+        }
+    }
+
+    .btn-sm {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

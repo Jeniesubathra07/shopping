@@ -1,0 +1,123 @@
+@if (product(); as currentProduct) {
+<div class="product-detail-page container">
+    <div class="product-gallery">
+        <div class="main-image">
+            <img [src]="currentProduct.image" [alt]="currentProduct.title">
+        </div>
+        <div class="thumbnails">
+            <img [src]="currentProduct.image" class="active">
+            <img [src]="currentProduct.image">
+            <img [src]="currentProduct.image">
+        </div>
+    </div>
+
+    <div class="product-info">
+        <div class="category">{{ currentProduct.category }}</div>
+        <h1>{{ currentProduct.title }}</h1>
+
+        <div class="rating">
+            <span class="material-icons star">star</span>
+            <span class="score">{{ currentProduct.rating.rate }}</span>
+            <span class="count">({{ currentProduct.rating.count }} reviews)</span>
+        </div>
+
+        <div class="price">${{ currentProduct.price }}</div>
+
+        <p class="description">{{ currentProduct.description }}</p>
+
+        <div class="variants-section">
+            <div class="variant-group">
+                <label>Size</label>
+                <div class="options">
+                    @for (size of availableSizes; track size) {
+                    <button [class.active]="selectedSize() === size" (click)="selectedSize.set(size)">
+                        {{ size }}
+                    </button>
+                    }
+                </div>
+            </div>
+
+            <div class="variant-group">
+                <label>Color</label>
+                <div class="options">
+                    @for (color of availableColors; track color) {
+                    <button [class.active]="selectedColor() === color" (click)="selectedColor.set(color)">
+                        {{ color }}
+                    </button>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="add-to-cart-section">
+            <div class="quantity-controls">
+                <button (click)="updateQuantity(-1)" [disabled]="quantity <= 1">-</button>
+                <span>{{ quantity }}</span>
+                <button (click)="updateQuantity(1)">+</button>
+            </div>
+
+            <button class="btn btn-primary btn-lg" (click)="addToCart()">
+                <span class="material-icons">shopping_bag</span>
+                Add to Cart
+            </button>
+        </div>
+
+        <div class="meta-info">
+            <div class="meta-item">
+                <span class="material-icons">local_shipping</span>
+                <span>Free shipping on orders over $50</span>
+            </div>
+            <div class="meta-item">
+                <span class="material-icons">assignment_return</span>
+                <span>30 day return policy</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reviews Section -->
+    <div class="reviews-section">
+        <h2>Customer Reviews</h2>
+        <div class="reviews-summary">
+            <div class="rating-box">
+                <span class="score">{{ currentProduct.rating.rate }}</span>
+                <span class="material-icons star">star</span>
+                <span class="count">{{ currentProduct.rating.count }} reviews</span>
+            </div>
+        </div>
+
+        <div class="reviews-list">
+            <div class="review-item">
+                <div class="review-header">
+                    <span class="user">John D.</span>
+                    <div class="stars">
+                        <span class="material-icons">star</span>
+                        <span class="material-icons">star</span>
+                        <span class="material-icons">star</span>
+                        <span class="material-icons">star</span>
+                        <span class="material-icons">star</span>
+                    </div>
+                </div>
+                <p>Excellent quality and fast delivery. Highly recommend!</p>
+            </div>
+            <div class="review-item">
+                <div class="review-header">
+                    <span class="user">Sarah M.</span>
+                    <div class="stars">
+                        <span class="material-icons">star</span>
+                        <span class="material-icons">star</span>
+                        <span class="material-icons">star</span>
+                        <span class="material-icons">star</span>
+                        <span class="material-icons">star_outline</span>
+                    </div>
+                </div>
+                <p>Very stylish, but the sizing runs slightly small.</p>
+            </div>
+        </div>
+    </div>
+</div>
+} @else {
+<div class="loading-container">
+    <div class="spinner"></div>
+    <p>Loading product details...</p>
+</div>
+}

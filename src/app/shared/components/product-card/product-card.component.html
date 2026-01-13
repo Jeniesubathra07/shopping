@@ -1,0 +1,20 @@
+<div class="product-card">
+    <div class="product-image" [routerLink]="['/product', product.id]">
+        <img [src]="product.image" [alt]="product.title">
+    </div>
+    <div class="product-info">
+        <div class="category">{{ product.category }}</div>
+        <h3 [routerLink]="['/product', product.id]">{{ product.title }}</h3>
+        <div class="rating">
+            <span class="material-icons star">star</span>
+            <span class="score">{{ product.rating.rate }}</span>
+            <span class="count">({{ product.rating.count }})</span>
+        </div>
+        <div class="actions">
+            <span class="price">${{ product.price }}</span>
+            <button class="btn btn-primary" (click)="addToCart.emit(product)">
+                <span class="material-icons">add_shopping_cart</span>
+            </button>
+        </div>
+    </div>
+</div>

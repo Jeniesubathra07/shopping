@@ -1,0 +1,55 @@
+<div class="cart-page container">
+    <h1>Shopping Cart ({{ cartService.cartCount() }})</h1>
+
+    @if (cartService.cartCount() > 0) {
+    <div class="cart-layout">
+        <div class="cart-items">
+            <div class="cart-header">
+                <span>Product</span>
+                <span>Price</span>
+                <span>Quantity</span>
+                <span>Total</span>
+                <span></span>
+            </div>
+
+            @for (item of cartService.items(); track item.product.id) {
+            <app-cart-item [item]="item" (quantityChange)="updateQuantity(item.product.id, $event)"
+                (remove)="removeItem(item.product.id)">
+            </app-cart-item>
+            }
+        </div>
+
+        <div class="cart-summary">
+            <h2>Order Summary</h2>
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span>${{ cartService.cartTotal().toFixed(2) }}</span>
+            </div>
+            <div class="summary-row">
+                <span>Shipping</span>
+                <span>Free</span>
+            </div>
+            <div class="summary-row">
+                <span>Tax (Estimate)</span>
+                <span>${{ (cartService.cartTotal() * 0.08).toFixed(2) }}</span>
+            </div>
+            <div class="summary-divider"></div>
+            <div class="summary-row total">
+                <span>Total</span>
+                <span>${{ (cartService.cartTotal() * 1.08).toFixed(2) }}</span>
+            </div>
+
+            <a routerLink="/checkout" class="btn btn-primary btn-block">
+                Proceed to Checkout
+            </a>
+        </div>
+    </div>
+    } @else {
+    <div class="empty-cart">
+        <span class="material-icons">shopping_cart</span>
+        <h2>Your cart is empty</h2>
+        <p>Looks like you haven't added anything to your cart yet.</p>
+        <a routerLink="/products" class="btn btn-primary">Start Shopping</a>
+    </div>
+    }
+</div>

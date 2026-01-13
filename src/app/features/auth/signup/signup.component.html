@@ -1,0 +1,45 @@
+<div class="auth-page container">
+    <div class="auth-card">
+        <h2>Create Account</h2>
+        <p class="subtitle">Start your journey with us.</p>
+
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" formControlName="name" placeholder="John Doe">
+                @if (signupForm.get('name')?.dirty && signupForm.get('name')?.invalid) {
+                <span class="error">Name is required</span>
+                }
+            </div>
+
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" formControlName="email" placeholder="Enter your email">
+                @if (signupForm.get('email')?.dirty && signupForm.get('email')?.invalid) {
+                <span class="error">Valid email is required</span>
+                }
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" formControlName="password" placeholder="Create a password (min 8 chars)">
+                @if (signupForm.get('password')?.dirty && signupForm.get('password')?.invalid) {
+                <span class="error">Password must be at least 8 characters</span>
+                }
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block" [disabled]="isLoading()">
+                @if (isLoading()) {
+                <span class="spinner"></span> Creating Account...
+                } @else {
+                Sign Up
+                }
+            </button>
+
+            <div class="auth-footer">
+                <span>Already have an account?</span>
+                <a routerLink="/login">Log in</a>
+            </div>
+        </form>
+    </div>
+</div>

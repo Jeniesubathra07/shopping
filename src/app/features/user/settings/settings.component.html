@@ -1,0 +1,50 @@
+<div class="settings-page container">
+    <h1>Account Settings</h1>
+
+    <div class="settings-card">
+        <div class="setting-group">
+            <h2>Notifications</h2>
+            <div class="setting-item">
+                <div class="setting-info">
+                    <h3>Push Notifications</h3>
+                    <p>Receive alerts about your orders and delivery status</p>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" [ngModel]="notificationsEnabled()"
+                        (ngModelChange)="notificationsEnabled.set($event)">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+
+            <div class="setting-item">
+                <div class="setting-info">
+                    <h3>Email Updates</h3>
+                    <p>Receive exclusive offers and promotions</p>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" [ngModel]="emailUpdates()" (ngModelChange)="emailUpdates.set($event)">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="setting-group">
+            <h2>Appearance</h2>
+            <div class="setting-item">
+                <div class="setting-info">
+                    <h3>Dark Mode</h3>
+                    <p>Switch between light and dark themes</p>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" [ngModel]="themeService.darkMode()"
+                        (ngModelChange)="themeService.toggleTheme()">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button class="btn btn-primary" (click)="saveSettings()">Save Changes</button>
+        </div>
+    </div>
+</div>

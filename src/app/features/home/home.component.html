@@ -1,0 +1,42 @@
+<section class="hero">
+    <div class="container hero-content">
+        <h1>Discover the Best Trends of 2026</h1>
+        <p>Shop the latest fashion, electronics, and lifestyle products with exclusive deals.</p>
+        <a routerLink="/products" class="btn btn-primary btn-lg">Shop Now</a>
+    </div>
+</section>
+
+<section class="featured-section container">
+    <h2 class="section-title">Featured Products</h2>
+
+    @if (featuredProducts(); as products) {
+    <div class="carousel-container">
+        <div class="product-grid carousel">
+            @for (product of products; track product.id) {
+            <app-product-card [product]="product" (addToCart)="addToCart($event)">
+            </app-product-card>
+            }
+        </div>
+    </div>
+    } @else {
+    <div class="loading">Loading featured items...</div>
+    }
+</section>
+
+<section class="features container">
+    <div class="feature-item">
+        <span class="material-icons">local_shipping</span>
+        <h3>Free Shipping</h3>
+        <p>On all orders over $50</p>
+    </div>
+    <div class="feature-item">
+        <span class="material-icons">verified_user</span>
+        <h3>Secure Payment</h3>
+        <p>100% secure payment</p>
+    </div>
+    <div class="feature-item">
+        <span class="material-icons">headset_mic</span>
+        <h3>24/7 Support</h3>
+        <p>Dedicated support</p>
+    </div>
+</section>
